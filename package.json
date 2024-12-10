@@ -1,0 +1,27 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "gentypes": "npx supabase gen types typescript --project-id 'fmpffrpcrpptmolosdes' --schema public > types/database.types.ts",
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "@nuxt/image": "^1.8.1",
+    "@nuxt/ui": "^2.19.2",
+    "@nuxtjs/google-fonts": "^3.2.0",
+    "@nuxtjs/supabase": "^1.4.2",
+    "@pinia/nuxt": "^0.7.0",
+    "@popperjs/core": "^2.11.8",
+    "date-fns": "^4.1.0",
+    "nuxt": "^3.14.159",
+    "pinia": "^2.2.7",
+    "vue": "latest",
+    "vue-router": "latest",
+    "zod": "^3.23.8"
+  }
+}
