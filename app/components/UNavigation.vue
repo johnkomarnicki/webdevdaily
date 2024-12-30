@@ -80,7 +80,7 @@ function toggleMobileNav() {
 </script>
 
 <template>
-  <header class="z-30 fixed w-full text-font-color bg-white shadow-sm">
+  <header class="z-30 w-full text-font-color bg-white shadow-sm">
     <nav
       class="container mx-auto flex max-w-screen-lg items-center py-3 font-medium text-font-color"
     >
@@ -94,7 +94,9 @@ function toggleMobileNav() {
         />
       </ULink>
       <div class="ml-auto flex items-center">
-        <ul class="mr-8 hidden flex-1 items-center gap-6 text-sm font-semibold uppercase md:flex">
+        <ul
+          class="mr-8 hidden flex-1 items-center gap-6 text-sm font-semibold uppercase md:flex"
+        >
           <UDropdown
             label="UI Challenges"
             mode="hover"
@@ -121,10 +123,25 @@ function toggleMobileNav() {
               trailing-icon="i-heroicons-chevron-down-20-solid"
             />
           </UDropdown>
-          <ULink class="flex items-center gap-1" to="/projects"> Projects </ULink>
-          <ULink :to="{ path: '/leaderboard', query: { type: 'challenges' } }"> Leaderboard </ULink>
+          <ULink class="flex items-center gap-1" to="/projects">
+            Projects
+          </ULink>
+          <ULink
+            :to="{
+              path: '/leaderboard',
+              query: { type: 'challenges' },
+            }"
+          >
+            Leaderboard
+          </ULink>
           <UProButton v-if="user && !proUser" to="/pro" />
-          <UButton v-if="!user" size="md" class="normal-case" icon="i-mdi-login" to="/login">
+          <UButton
+            v-if="!user"
+            size="md"
+            class="normal-case"
+            icon="i-mdi-login"
+            to="/login"
+          >
             Login
           </UButton>
         </ul>
@@ -147,7 +164,9 @@ function toggleMobileNav() {
             <template #account="{ item }">
               <div class="truncate text-left">
                 <p>Signed in as</p>
-                <p class="truncate font-medium text-gray-900 dark:text-white">
+                <p
+                  class="truncate font-medium text-gray-900 dark:text-white"
+                >
                   {{ item.label }}
                 </p>
               </div>
@@ -173,7 +192,9 @@ function toggleMobileNav() {
     </nav>
     <!-- Mobile -->
     <div v-if="showMobileNav" class="flex bg-white shadow-md">
-      <ul class="flex flex-1 flex-col justify-center text-sm font-semibold uppercase">
+      <ul
+        class="flex flex-1 flex-col justify-center text-sm font-semibold uppercase"
+      >
         <ULink
           @click="toggleNav"
           class="flex items-center gap-3 border-b px-4 py-5"
@@ -182,19 +203,33 @@ function toggleMobileNav() {
           <Icon name="clarity:bullseye-line" width="20" height="20" />
           <span>Challenges</span>
         </ULink>
-        <ULink @click="toggleNav" class="flex items-center gap-3 border-b px-4 py-5" to="/projects">
-          <Icon name="icon-park-outline:add-computer" class="h-5 w-5" />
+        <ULink
+          @click="toggleNav"
+          class="flex items-center gap-3 border-b px-4 py-5"
+          to="/projects"
+        >
+          <Icon
+            name="icon-park-outline:add-computer"
+            class="h-5 w-5"
+          />
           <span class="flex items-center gap-2"> Projects </span>
         </ULink>
         <ULink
           @click="toggleNav"
           class="flex items-center gap-3 border-b px-4 py-5"
-          :to="{ path: '/leaderboard', query: { type: 'challenges' } }"
+          :to="{
+            path: '/leaderboard',
+            query: { type: 'challenges' },
+          }"
         >
           <Icon name="iconoir:leaderboard-star" class="h-5 w-5" />
           <span> Leaderboard </span>
         </ULink>
-        <ULink @click="toggleNav" class="flex items-center gap-3 border-b px-4 py-5" to="/pro">
+        <ULink
+          @click="toggleNav"
+          class="flex items-center gap-3 border-b px-4 py-5"
+          to="/pro"
+        >
           <Icon name="iconoir:rocket" class="h-5 w-5" />
           <span>Go Pro</span>
         </ULink>
@@ -220,14 +255,27 @@ function toggleMobileNav() {
             <span>My Profile</span>
           </div>
           <ul class="px-11">
-            <li v-for="link in links" class="flex flex-col gap-3 border-b px-4 py-5">
-              <div v-if="link.slot === 'account' && user" class="text-xs normal-case">
+            <li
+              v-for="link in links"
+              class="flex flex-col gap-3 border-b px-4 py-5"
+            >
+              <div
+                v-if="link.slot === 'account' && user"
+                class="text-xs normal-case"
+              >
                 <p class="mb-1">Signed in as</p>
-                <p class="truncate font-medium text-gray-900 dark:text-white">
+                <p
+                  class="truncate font-medium text-gray-900 dark:text-white"
+                >
                   {{ link.label }}
                 </p>
               </div>
-              <ULink class="flex gap-3" v-else-if="link.to" :to="link.to" @click="toggleNav">
+              <ULink
+                class="flex gap-3"
+                v-else-if="link.to"
+                :to="link.to"
+                @click="toggleNav"
+              >
                 <Icon class="h-5 w-5" :name="link.icon" />
                 <span>{{ link.label }}</span>
               </ULink>

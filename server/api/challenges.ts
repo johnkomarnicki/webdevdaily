@@ -6,13 +6,20 @@ export default defineEventHandler(async (event) => {
   const client = await serverSupabaseClient<Database>(event);
   const query = getQuery(event);
 
-  const { data, error, count } = await client
+  const searchQuery = query.search as string | undefined;
+
+  let supabaseQuery = client
     .from("challenges")
     .select("*", { count: "exact" })
     .eq("is_public", true)
     .order("date", { ascending: false })
-    .limit(query.limit as number)
-    .returns<ChallengeWithThumbnail[]>();
+    .limit(query.limit as number);
+
+  if (searchQuery) {
+    supabaseQuery = supabaseQuery.or(`title.ilike.%${searchQuery}%`);
+  }
+
+  const { data, error, count } = await supabaseQuery.returns<ChallengeWithThumbnail[]>();
 
   data?.forEach((challenge) => {
     const imageRes = client.storage.from("challenge-png").getPublicUrl(challenge.image as string);

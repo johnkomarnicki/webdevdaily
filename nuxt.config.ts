@@ -1,9 +1,20 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
+
+  build: {
+    transpile: ["monaco-editor"],
+  },
+
+  site: {
+    name: "WebDevDaily",
+    url: "https://webdevdaily.io",
+  },
+
   future: {
     compatibilityVersion: 4,
   },
+
   experimental: {
     scanPageMeta: "after-resolve",
     sharedPrerenderData: false,
@@ -18,11 +29,13 @@ export default defineNuxtConfig({
       },
     },
   },
+
   unhead: {
     renderSSRHeadOptions: {
       omitLineBreaks: false,
     },
   },
+
   devtools: { enabled: true },
 
   colorMode: {
@@ -31,7 +44,8 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      apiBase: process.env.NUXT_PUBLIC_SITE_URL || "http://localhost:3000",
+      apiBase:
+        process.env.NUXT_PUBLIC_SITE_URL || "http://localhost:3000",
     },
   },
 
@@ -41,11 +55,16 @@ export default defineNuxtConfig({
     "@nuxtjs/google-fonts",
     "@nuxt/image",
     "@pinia/nuxt",
+    "nuxt-monaco-editor",
   ],
 
   googleFonts: {
     families: {
       Exo: [100, 200, 300, 400, 500, 600, 700, 800],
     },
+  },
+
+  monacoEditor: {
+    globalAPI: true,
   },
 });
